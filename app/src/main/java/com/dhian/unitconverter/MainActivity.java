@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         spinnerTargetUnit = (Spinner) findViewById(R.id.spinner_target_unit);
         textViewResultValue = (TextView) findViewById(R.id.textView_resultValue);
 
+        // Clear result on source unit dropdown changed
         spinnerSourceUnit.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parentView) {}
         });
 
+        // Clear result on target unit dropdown changed
         spinnerTargetUnit.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
@@ -70,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parentView) {}
         });
 
+        // Clear both input value and result on converter type dropdown changed
         spinnerType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
@@ -100,11 +103,14 @@ public class MainActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parentView) {}
         });
 
+        // Inject values to converter types dropdown
         this.setSpinnerValues(spinnerType, R.array.converter_types);
 
         convertButton = (Button) findViewById(R.id.button_convert);
         convertButton.setEnabled(false);
 
+        // Clear result on every input value changed
+        // Convert button will be disabled if input is empty
         inputValueText = (EditText) findViewById(R.id.editTextNumber_inputValue);
         inputValueText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -120,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Handler for convert button clicked
         convertButton.setOnClickListener(v -> {
             String inputValueStr = inputValueText.getText().toString().trim();
             if (inputValueStr.isEmpty()) {
@@ -156,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    // Reusable function to assign values to dropdown/spinner
     private void setSpinnerValues(Spinner spinner, int textArrayId) {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
             this,
