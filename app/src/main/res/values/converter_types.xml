@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="converter_types">
+        <item>Weight</item>
+        <item>Length</item>
+        <item>Temperature</item>
+    </string-array>
+</resources>
